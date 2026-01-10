@@ -11,12 +11,12 @@ if (startYear === currentYear) {
 
 export default function () {
   return {
-    feedUrl: 'https://theentiretyofentirety.com/feed/podcast.xml',
-    siteUrl: 'https://theentiretyofentirety.com/',
-    title: 'The Entirety of Entirety: A Doctor Who Podcast Collection',
+    feedUrl: 'https://theentiretyof.flightthroughentirety.com/feed/podcast.xml',
+    siteUrl: 'https://theentiretyof.flightthroughentirety.com/',
+    title: 'The Entirety of Flight Through Entirety: A Doctor Who Podcast Collection',
     description: "The master feed of all of Flight Through Entirety's Doctor Who podcasts.",
     language: 'en',
-    imageUrl: 'https://theentiretyofentirety.com/img/podcast-logo.jpg',
+    imageUrl: 'https://theentiretyof.flightthroughentirety.com/img/podcast-logo.jpg',
     category: 'TV & Film',
     subcategory: 'TV Reviews',
     author,
