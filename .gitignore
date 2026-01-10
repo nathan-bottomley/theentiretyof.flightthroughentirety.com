@@ -1,0 +1,5 @@
+node_modules
+_site
+.zed
+.DS_Store
+.cache

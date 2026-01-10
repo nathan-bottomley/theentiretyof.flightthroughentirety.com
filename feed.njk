@@ -1,0 +1,80 @@
+---
+permalink: /feed/podcast.xml
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:podcast="https://podcastindex.org/namespace/1.0">
+  <channel>
+    <title>{{ podcast.title }}</title>
+    <link>{{ podcast.siteUrl }}</link>
+    <atom:link href="{{ podcast.feedUrl }}" rel="self" type="application/rss+xml" />
+    <description>{{ podcast.description }}</description>
+    <language>{{ podcast.language }}</language>
+    <copyright>{{ podcast.copyrightNotice }}</copyright>
+    <pubDate>{{ collections.entiretyEpisodes[0].pubDate }}</pubDate>
+    <lastBuildDate>{{ podcast.feedLastBuildDate }}</lastBuildDate>
+    <itunes:image href="{{ podcast.imageUrl }}"></itunes:image>
+    {%- if podcast.subcategory %}
+    <itunes:category text="{{ podcast.category }}">
+      <itunes:category text="{{ podcast.subcategory }}" />
+    </itunes:category>
+    {%- else %}
+    <itunes:category text="{{ podcast.category }}" />
+    {%- endif %}
+    {% if podcast.explicit !== undefined %}
+    <itunes:explicit>{{ podcast.explicit }}</itunes:explicit>
+    {% endif -%}
+    <itunes:author>{{ podcast.author }}</itunes:author>
+    {%- if podcast.type %}
+    <itunes:type>{{ podcast.type }}</itunes:type>
+    {%- endif %}
+    {%- if podcast.complete %}
+    <itunes:complete>yes</itunes:complete>
+    {%- endif %}
+    {%- if podcast.block %}
+    <itunes:block>yes</itunes:block>
+    {%- endif %}
+    {%- if podcast.owner %}
+    <itunes:owner>
+      <itunes:name>{{ podcast.owner.name }}</itunes:name>
+      <itunes:email>{{ podcast.owner.email }}</itunes:email>
+    </itunes:owner>
+    {%- endif %}
+
+    {% for post in collections.entiretyEpisodes %}
+    <item>
+      <title>{{ post.title }}</title>
+      {% if post['itunes:title'] -%}
+      <itunes:title>{{ post['itunes:title'] }}</itunes:title>
+      {%- endif %}
+      <link>{{ post.link }}</link>
+      <guid isPermaLink="{{ post.guid['@_isPermaLink'] }}">{{ post.guid['#text'] }}</guid>
+      <pubDate>{{ post.pubDate }}</pubDate>
+      <description>{{ post.description }}</description>
+      <itunes:summary>{{ post['itunes:summary'] }}</itunes:summary>
+      <content:encoded><![CDATA[{{ post['content:encoded'] | safe }}]]></content:encoded>
+      <enclosure url="{{ post.enclosure['@_url'] }}" length="{{ post.enclosure['@_length'] }}" type="{{ post.enclosure['@_type'] }}"></enclosure>
+      <itunes:duration>{{ post['itunes:duration'] }}</itunes:duration>
+      <itunes:episode>{{ post['itunes:episode'] }}</itunes:episode>
+      {% if post['itunes:season'] -%}
+      <itunes:season>{{ post['itunes:season'] }}</itunes:season>
+      {%- endif %}
+      {%- if post['itunes:explicit'] != undefined -%}
+      <itunes:explicit>{{ post['itunes:explicit'] }}</itunes:explicit>
+      {% endif -%}
+      {%- if post['itunes:episodeType'] -%}
+      <itunes:episodeType>{{ post['itunes:episodeType'] }}</itunes:episodeType>
+      {% endif -%}
+      {%- if post['podcast:transcript'] -%}
+      <podcast:transcript url="{{ post['podcast:transcript']['@_url'] }}"></podcast:transcript>
+      {%- endif %}
+      {%- if post['itunes:block'] === true -%}
+      <itunes:block>{{ post['itunes:block'] }}</itunes:block>
+      {% endif %}
+    </item>
+    {% endfor -%}
+  </channel>
+</rss>
