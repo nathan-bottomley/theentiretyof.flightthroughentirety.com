@@ -45,4 +45,6 @@ export default async function (eleventyConfig) {
     allEpisodes.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
     return allEpisodes
   })
+
+  eleventyConfig.addPassthroughCopy('img')
 }
