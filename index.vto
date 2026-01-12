@@ -24,12 +24,14 @@
       <section class="band">
         <h2>Podcasts</h2>
         <p><dfn>The Entirety of Flight Through Entirety</dfn> is a podcast that includes all the episodes of
-        <em>Flight Through Entirety</em>’s four <em>Doctor Who</em> podcasts:</p>
+        <em>Flight Through Entirety</em>’s four <em>Doctor Who</em> podcasts in the order of their release.</p>
         <dl class="podcasts">
         {{- for podcast of podcasts }}
         <li>
           <figure>
-            <img src="{{ podcast.image }}" alt="{{ podcast.name }} logo"></a>
+            <a href="{{ podcast.url }}">
+              <img src="{{ podcast.image }}" alt="{{ podcast.name }} logo">
+            </a>
             <figcaption>
               <h3><a href="{{ podcast.url }}">{{ podcast.name }}</a></h3>
               <p class="caption">{{ podcast.description }}</a></p>
@@ -41,14 +43,38 @@
       <section class="band">
         <h2>Recent Episodes</h2>
         <ul class="recent-episodes">
-        {{- for count of 4 }}
-            <li>{{ collections.episode[count - 1].title }}</li>
+        {{- for episode of collections.episode.slice(0, 4) }}
+            <li>
+              <a href="{{ episode.link }}">
+                <img src="{{ episode |> podcast |> atIndex('image') }}" alt="{{ episode |> podcast |> atIndex('name') }} logo" height="100" width="100">
+              </a>
+              <div>
+                <h3><a href="{{ episode.link }}">{{ episode.title |> splitOnce(': ') |> atIndex(1) }}</a></h3>
+                <p class="metadata">
+                  {{ episode |> podcast |> atIndex('name') }} &middot;
+                  {{ if episode['itunes:season'] }}
+                    S{{ episode['itunes:season'] }}E{{ episode['itunes:episode'] }}
+                  {{ else }}
+                    #{{ episode }}
+                  {{ /if -}} &middot;
+                  <time datetime="{{ episode.pubDate }}">{{ episode.pubDate |> readableDate }}</time>
+                </p>
+                <p class="description">
+                  {{ episode.description |> truncate(150) }}
+                  <a href="{{ episode.link }}">[More]</a>
+                </p>
+                <audio controls src="{{ episode.enclosure['@_url'] }}"></audio>
+              </div>
+            </li>
         {{- /for }}
         </ul>
       </section>
     </main>
     <footer class="band">
-      <p>{{ podcast.copyrightNotice }}</p>
+      <p>
+        {{ podcast.copyrightNotice }}.
+        Created by <a href="https://gunsandfrocks.com">Nathan Bottomley</a> using <a href="https://11ty.dev">Eleventy</a>.
+        Logos designed by <a href="https://bsky.app/profile/ohjamessellwood.bsky.social">James Sellwood.</a></p>
     </footer>
   </body>
 </html>

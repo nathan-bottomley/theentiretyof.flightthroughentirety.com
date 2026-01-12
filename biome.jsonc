@@ -122,7 +122,7 @@
         "noNonNullAssertion": "error",
         "noYodaExpression": "error",
         "useArrayLiterals": "error",
-        "useBlockStatements": "error",
+        // "useBlockStatements": "error",
         "useConsistentArrayType": {
           "level": "error",
           "options": {

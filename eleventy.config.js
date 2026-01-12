@@ -29,6 +29,35 @@ export default async function (eleventyConfig) {
     return allEpisodes
   })
 
+  eleventyConfig.addFilter('readableDate', (date) => {
+    return new Date(date).toLocaleDateString('en-AU', { weekday: 'long', month: 'long', day: 'numeric' })
+  })
+
+  eleventyConfig.addFilter('podcast', (episode) => {
+    const firstWord = episode.title.match(/^.+?\b/)[0]
+    const podcast = podcasts.find(x => x.abbreviation === firstWord)
+    return podcast
+  })
+
+  eleventyConfig.addFilter('splitOnce', (str, separator) => {
+    const [first, ...rest] = str.split(separator)
+    return [first, rest.join(separator)]
+  })
+
+  eleventyConfig.addFilter('atIndex', (arr, index) => {
+    return arr[index]
+  })
+
+  eleventyConfig.addFilter('truncate', (str, length) => {
+    if (str.length <= length) return str
+
+    let index = str.lastIndexOf(' ', length)
+    if (index === -1) {
+      index = length;
+    }
+    return `${str.substring(0, index)}...`
+  })
+
   eleventyConfig.addPlugin(VentoPlugin)
   eleventyConfig.addPassthroughCopy('img')
   eleventyConfig.addPassthroughCopy('css')
