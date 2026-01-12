@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Apple Podcasts",
+    "url": "https://podcasts.apple.com/us/podcast/flight-through-entirety/id1234567890"
+  },
+  {
+    "name": "Overcast",
+    "url": "https://overcast.fm/itunes1234567890"
+  },
+  {
+    "name": "Pocket Casts",
+    "url": "https://open.spotify.com/show/1234567890"
+  },
+  {
+    "name": "Castbox",
+    "url": "https://castbox.fm/show/1234567890"
+  },
+  {
+    "name": "RSS",
+    "url": "/feed/podcast.xml"
+  }
+]

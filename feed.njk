@@ -44,7 +44,7 @@ permalink: /feed/podcast.xml
     </itunes:owner>
     {%- endif %}
 
-    {% for post in collections.entiretyEpisodes %}
+    {% for post in collections.episode %}
     <item>
       <title>{{ post.title }}</title>
       {% if post['itunes:title'] -%}

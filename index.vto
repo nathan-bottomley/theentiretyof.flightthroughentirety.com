@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/index.css">
+    <meta name="generator" content="{{ eleventy.generator }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Entirety of Flight Through Entirety</title>
+  </head>
+  <body>
+    <header class="band">
+        <h1>The Entirety of<br>Flight Through Entirety</h1>
+        <p>All of the <em>Flight Through Entirety</em> <em>Doctor Who</em> podcasts, together at last.</p>
+    </header>
+    <main>
+      <section class="band">
+        <h2>Subscribe</h2>
+        <ul class="subscriptions">
+        {{- for subscription of subscriptions }}
+            <li><a href="{{ subscription.url }}">{{ subscription.name }}</a></li>
+        {{- /for }}
+        </ul>
+      </section>
+      <section class="band">
+        <h2>Podcasts</h2>
+        <p><dfn>The Entirety of Flight Through Entirety</dfn> is a podcast that includes all the episodes of
+        <em>Flight Through Entirety</em>’s four <em>Doctor Who</em> podcasts:</p>
+        <dl class="podcasts">
+        {{- for podcast of podcasts }}
+        <li>
+          <figure>
+            <img src="{{ podcast.image }}" alt="{{ podcast.name }} logo"></a>
+            <figcaption>
+              <h3><a href="{{ podcast.url }}">{{ podcast.name }}</a></h3>
+              <p class="caption">{{ podcast.description }}</a></p>
+            </figcaption>
+          </figure>
+        {{- /for }}
+        </dl>
+      </section>
+      <section class="band">
+        <h2>Recent Episodes</h2>
+        <ul class="recent-episodes">
+        {{- for count of 4 }}
+            <li>{{ collections.episode[count - 1].title }}</li>
+        {{- /for }}
+        </ul>
+      </section>
+    </main>
+    <footer class="band">
+      <p>{{ podcast.copyrightNotice }}</p>
+    </footer>
+  </body>
+</html>

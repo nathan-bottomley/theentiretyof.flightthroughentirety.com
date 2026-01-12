@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Flight Through Entirety",
+    "url": "https://flightthroughentirety.com/",
+    "image": "https://flightthroughentirety.com/assets/images/podcast-logo.jpg",
+    "feedUrl": "https://flightthroughentirety.com/feed/podcast",
+    "abbreviation": "FTE",
+    "description": "A podcast that covers <em>Doctor Who</em> chronologically, flying through the entire history of the show"
+  },
+  {
+    "name": "500 Year Diary",
+    "url": "https://500yeardiary.com/",
+    "image": "/img/500yeardiary.jpg",
+    "feedUrl": "https://500yeardiary.com/feed/podcast",
+    "abbreviation": "500YD",
+    "description": "A podcast that covers <em>Doctor Who</em> topic by topic — looking at themes, tropes, concepts, characters and creators"
+  },
+  {
+    "name": "Jodie into Terror",
+    "url": "https://jodieintoterror.com/",
+    "image": "/img/jit.jpg",
+    "feedUrl": "https://jodieintoterror.com/feed/podcast",
+    "abbreviation": "JIT",
+    "description": "A <em>Doctor Who</em> flashcast chronicling our initial reactions to episodes of the Jodie Whittaker era"
+  },
+  {
+    "name": "The Second Great and Bountiful Human Empire",
+    "url": "https://thesecondgreatandbountifulhumanempire.com/",
+    "image": "/img/2gab.jpg",
+    "feedUrl": "https://thesecondgreatandbountifulhumanempire.com/feed/podcast",
+    "abbreviation": "2GAB",
+    "description": "A <em>Doctor Who</em> flashcast chronicling our initial reactions to the episodes of the sixtieth anniversary and beyond"
+  }
+]

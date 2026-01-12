@@ -1,31 +1,14 @@
 import Fetch from '@11ty/eleventy-fetch'
+import { VentoPlugin } from 'eleventy-plugin-vento'
 import { XMLParser } from 'fast-xml-parser'
-
-const podcasts = [
-  {
-    url: 'https://flightthroughentirety.com/feed/podcast',
-    abbreviation: 'FTE'
-  },
-  {
-    url: 'https://500yeardiary.com/feed/podcast',
-    abbreviation: '500YD'
-  },
-  {
-    url: 'https://thesecondgreatandbountifulhumanempire.com/feed/podcast',
-    abbreviation: '2GAB'
-  },
-  {
-    url: 'https://jodieintoterror.com/feed/podcast',
-    abbreviation: 'JIT'
-  }
-]
+import podcasts from './_data/podcasts.json' with { type: 'json' }
 
 export default async function (eleventyConfig) {
-  eleventyConfig.addCollection('entiretyEpisodes', async () => {
+  eleventyConfig.addCollection('episode', async () => {
     const allEpisodes = []
     for (const podcast of podcasts) {
-      const feed = await Fetch(podcast.url, {
-        duration: '0s',
+      const feed = await Fetch(podcast.feedUrl, {
+        duration: '1d',
         type: 'xml'
       })
       const parser = new XMLParser({ ignoreAttributes: false })
@@ -46,5 +29,8 @@ export default async function (eleventyConfig) {
     return allEpisodes
   })
 
+  eleventyConfig.addPlugin(VentoPlugin)
   eleventyConfig.addPassthroughCopy('img')
+  eleventyConfig.addPassthroughCopy('css')
+  eleventyConfig.addPassthroughCopy('font')
 }
