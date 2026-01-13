@@ -14,7 +14,7 @@ export default function () {
     feedUrl: 'https://theentiretyof.flightthroughentirety.com/feed/podcast.xml',
     siteUrl: 'https://theentiretyof.flightthroughentirety.com/',
     title: 'The Entirety of Flight Through Entirety: A Doctor Who Podcast Collection',
-    description: "The master feed of all of Flight Through Entirety's Doctor Who podcasts.",
+    description: "All of the Flight Through Entirety Doctor Who podcasts, together at last",
     language: 'en',
     imageUrl: 'https://theentiretyof.flightthroughentirety.com/img/podcast-logo.jpg',
     category: 'TV & Film',
