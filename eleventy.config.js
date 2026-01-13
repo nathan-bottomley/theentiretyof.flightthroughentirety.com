@@ -62,4 +62,5 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('img')
   eleventyConfig.addPassthroughCopy('css')
   eleventyConfig.addPassthroughCopy('font')
+  eleventyConfig.addPassthroughCopy({ 'icons': '/' })
 }

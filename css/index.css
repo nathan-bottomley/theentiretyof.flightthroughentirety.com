@@ -58,7 +58,7 @@
   --dark-green: oklch(0.2 0.051 223);
   --dark-blue: oklch(0.1 0.135 272);
   --white: oklch(0.9 0.007 234);
-  --dark-red: oklch(0.2 0.082 35);
+  --dark-red: oklch(0.15 0.082 35);
   --black: oklch(0.15 0.082 240);
   --border-color: color-mix(in srgb, var(--white) 20%, transparent);
   --shadow-color: color-mix(in srgb, var(--white) 50%, transparent);
