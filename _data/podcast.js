@@ -22,5 +22,9 @@ export default function () {
     author,
     copyrightNotice,
     feedLastBuildDate: new Date().toISOString(),
+    owner: {
+      name: 'Nathan Bottomley',
+      email: 'nathan.bottomley@gmail.com'
+    }
   }
 }
