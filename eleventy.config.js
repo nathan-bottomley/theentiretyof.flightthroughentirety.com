@@ -1,7 +1,8 @@
-import Fetch from '@11ty/eleventy-fetch'
-import { VentoPlugin } from 'eleventy-plugin-vento'
-import { XMLParser } from 'fast-xml-parser'
-import podcasts from './_data/podcasts.json' with { type: 'json' }
+import Fetch from '@11ty/eleventy-fetch';
+import { eleventyImageTransformPlugin } from '@11ty/eleventy-img'
+import { VentoPlugin } from 'eleventy-plugin-vento';
+import { XMLParser } from 'fast-xml-parser';
+import podcasts from './_data/podcasts.json' with { type: 'json' };
 
 export default async function (eleventyConfig) {
   eleventyConfig.addCollection('episode', async () => {
@@ -58,6 +59,7 @@ export default async function (eleventyConfig) {
     return `${str.substring(0, index)}...`
   })
 
+  eleventyConfig.addPlugin(eleventyImageTransformPlugin)
   eleventyConfig.addPlugin(VentoPlugin)
   eleventyConfig.addPassthroughCopy('img')
   eleventyConfig.addPassthroughCopy('css')
