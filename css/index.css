@@ -243,13 +243,14 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   gap: var(--space-m);
-  font-size: var(--step--1);
+  font-family: var(--heading-font-family);
+  font-weight: 600;
+  font-size: var(--step-0);
 
   li {
     display: inline-block;
     text-align: center;
     gap: var(--space-xs);
-    padding: var(--space-xs);
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
     color: var(--black);
@@ -265,6 +266,8 @@ header {
     a {
       color: var(--white);
       text-decoration: none;
+      display: block;
+      padding: var(--space-xs);
     }
   }
 }
