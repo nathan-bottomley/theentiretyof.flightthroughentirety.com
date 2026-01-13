@@ -26,6 +26,7 @@ export default async function (eleventyConfig) {
         allEpisodes.push(episode)
       }
     }
+    console.log(`\x1b[33m${allEpisodes.length} episodes`)
     allEpisodes.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
     return allEpisodes
   })
