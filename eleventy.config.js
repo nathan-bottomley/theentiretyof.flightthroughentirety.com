@@ -1,8 +1,8 @@
-import Fetch from '@11ty/eleventy-fetch';
+import Fetch from '@11ty/eleventy-fetch'
 import { eleventyImageTransformPlugin } from '@11ty/eleventy-img'
-import { VentoPlugin } from 'eleventy-plugin-vento';
-import { XMLParser } from 'fast-xml-parser';
-import podcasts from './_data/podcasts.json' with { type: 'json' };
+import { VentoPlugin } from 'eleventy-plugin-vento'
+import { XMLParser } from 'fast-xml-parser'
+import podcasts from './_data/podcasts.json' with { type: 'json' }
 
 export default async function (eleventyConfig) {
   eleventyConfig.addCollection('episode', async () => {
@@ -55,7 +55,7 @@ export default async function (eleventyConfig) {
 
     let index = str.lastIndexOf(' ', length)
     if (index === -1) {
-      index = length;
+      index = length
     }
     return `${str.substring(0, index)}...`
   })
@@ -65,5 +65,5 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('img')
   eleventyConfig.addPassthroughCopy('css')
   eleventyConfig.addPassthroughCopy('font')
-  eleventyConfig.addPassthroughCopy({ 'icons': '/' })
+  eleventyConfig.addPassthroughCopy({ icons: '/' })
 }
