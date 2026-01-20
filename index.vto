@@ -63,12 +63,12 @@
         {{- for episode of collections.episode.slice(0, 4) }}
             <li>
               <a href="{{ episode.link }}">
-                <img src="{{ episode |> podcast |> atIndex('image') }}" alt="{{ episode |> podcast |> atIndex('name') }} logo" height="100" width="100">
+                <img src="{{ episode |> podcast |> at('image') }}" alt="{{ episode |> podcast |> at('name') }} logo" height="100" width="100">
               </a>
               <div>
-                <h3><a href="{{ episode.link }}">{{ episode.title |> splitOnce(': ') |> atIndex(1) }}</a></h3>
+                <h3><a href="{{ episode.link }}">{{ episode.title |> splitOnce(': ') |> at(1) }}</a></h3>
                 <p class="metadata">
-                  {{ episode |> podcast |> atIndex('name') }} &middot;
+                  {{ episode |> podcast |> at('name') }} &middot;
                   {{ if episode['itunes:season'] }}
                     S{{ episode['itunes:season'] }}E{{ episode['itunes:episode'] }}
                   {{ else }}

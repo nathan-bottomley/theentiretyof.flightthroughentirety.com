@@ -46,8 +46,8 @@ export default async function (eleventyConfig) {
     return [first, rest.join(separator)]
   })
 
-  eleventyConfig.addFilter('atIndex', (arr, index) => {
-    return arr[index]
+  eleventyConfig.addFilter('at', (x, index) => {
+    return x[index]
   })
 
   eleventyConfig.addFilter('truncate', (str, length) => {
