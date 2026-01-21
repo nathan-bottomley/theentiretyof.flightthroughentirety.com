@@ -227,12 +227,21 @@ header {
   background-position: center;
   background-repeat: no-repeat;
 
-  @media (width >= 1000px) {
+  @media (width >= 900px) {
     background-image: url(/img/entirety-logo-background.jpg);
   }
 
   p {
     font-style: italic;
+  }
+
+  > * {
+    margin: 0;
+    padding: 0;
+  }
+
+  > * + * {
+    padding-block-start: 2rem;
   }
 }
 
