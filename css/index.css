@@ -222,10 +222,14 @@ header {
   flex-direction: column;
   text-align: center;
   text-wrap: balance;
-  background-image: url(/img/entirety-logo-background.jpg);
+  background-image: url(/img/entirety-logo-background-narrow.jpg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+
+  @media (width >= 1000px) {
+    background-image: url(/img/entirety-logo-background.jpg);
+  }
 
   p {
     font-style: italic;
