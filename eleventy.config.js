@@ -6,43 +6,45 @@ import podcasts from './_data/podcasts.json' with { type: 'json' }
 
 export default async function (eleventyConfig) {
   eleventyConfig.addCollection('episode', async () => {
-    const allEpisodes = []
-    for (const podcast of podcasts) {
-      let feed
-      try {
-        feed = await Fetch(podcast.feedUrl, {
-          duration: '1d',
-          type: 'xml'
-        })
-      } catch (error) {
-        throw new Error(`Failed to fetch feed for ${podcast.name}: ${error.message}`)
-      }
-
-      const parser = new XMLParser({ ignoreAttributes: false })
-      let parsed
-      try {
-        parsed = parser.parse(feed)
-      } catch (error) {
-        throw new Error(`Failed to parse XML for ${podcast.name}: ${error.message}`)
-      }
-
-      const feedEpisodes = parsed.rss?.channel?.item
-      if (!feedEpisodes) {
-        throw new Error(`Feed for ${podcast.name} has no episodes (missing rss.channel.item)`)
-      }
-
-      for (const episode of feedEpisodes) {
-        episode['itunes:title'] = `${podcast.abbreviation}: ${episode.title}`
-        if (episode['itunes:season']) {
-          episode.title = `${podcast.abbreviation} S${episode['itunes:season']}E${episode['itunes:episode']}: ${episode.title}`
-        } else if (episode['itunes:episode']) {
-          episode.title = `${podcast.abbreviation} ${episode['itunes:episode']}: ${episode.title}`
-        } else {
-          episode.title = `${podcast.abbreviation}: ${episode.title}`
+    const episodesByPodcast = await Promise.all(
+      podcasts.map(async (podcast) => {
+        let feed
+        try {
+          feed = await Fetch(podcast.feedUrl, {
+            duration: '1d',
+            type: 'xml'
+          })
+        } catch (error) {
+          throw new Error(`Failed to fetch feed for ${podcast.name}: ${error.message}`)
         }
-        allEpisodes.push(episode)
-      }
-    }
+
+        const parser = new XMLParser({ ignoreAttributes: false })
+        let parsed
+        try {
+          parsed = parser.parse(feed)
+        } catch (error) {
+          throw new Error(`Failed to parse XML for ${podcast.name}: ${error.message}`)
+        }
+
+        const feedEpisodes = parsed.rss?.channel?.item
+        if (!feedEpisodes) {
+          throw new Error(`Feed for ${podcast.name} has no episodes (missing rss.channel.item)`)
+        }
+
+        for (const episode of feedEpisodes) {
+          episode['itunes:title'] = `${podcast.abbreviation}: ${episode.title}`
+          if (episode['itunes:season']) {
+            episode.title = `${podcast.abbreviation} S${episode['itunes:season']}E${episode['itunes:episode']}: ${episode.title}`
+          } else if (episode['itunes:episode']) {
+            episode.title = `${podcast.abbreviation} ${episode['itunes:episode']}: ${episode.title}`
+          } else {
+            episode.title = `${podcast.abbreviation}: ${episode.title}`
+          }
+        }
+        return feedEpisodes
+      })
+    )
+    const allEpisodes = episodesByPodcast.flat()
     console.log(`\x1b[33m${allEpisodes.length} episodes`)
     allEpisodes.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
     return allEpisodes
