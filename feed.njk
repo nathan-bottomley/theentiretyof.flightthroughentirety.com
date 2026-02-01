@@ -14,7 +14,7 @@ permalink: /feed/podcast.xml
     <description>{{ podcast.description }}</description>
     <language>{{ podcast.language }}</language>
     <copyright>{{ podcast.copyrightNotice }}</copyright>
-    <pubDate>{{ collections.entiretyEpisodes[0].pubDate }}</pubDate>
+    <pubDate>{{ collections.episode[0].pubDate }}</pubDate>
     <lastBuildDate>{{ podcast.feedLastBuildDate }}</lastBuildDate>
     <itunes:image href="{{ podcast.imageUrl }}"></itunes:image>
     {%- if podcast.subcategory %}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="description" content="{{ site.description }}">
@@ -21,7 +21,7 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <title>The Entirety of Flight Through Entirety</title>
+    <title>{{ site.title }}</title>
   </head>
   <body>
     <header class="band">
@@ -42,7 +42,7 @@
         <p><dfn>The Entirety of Flight Through Entirety</dfn> combines our four <em>Doctor Who</em> podcasts
           into one convenient feed: every single <em>Doctor Who</em> story discussed,
           analysed and lovingly mocked for your enjoyment. Sometimes more than once.</p>
-        <dl class="podcasts">
+        <ul class="podcasts">
         {{- for podcast of podcasts }}
         <li>
           <figure>
@@ -51,11 +51,11 @@
             </a>
             <figcaption>
               <h3><a href="{{ podcast.url }}">{{ podcast.name }}</a></h3>
-              <p class="caption">{{ podcast.description }}</a></p>
+              <p class="caption">{{ podcast.description }}</p>
             </figcaption>
           </figure>
         {{- /for }}
-        </dl>
+        </ul>
       </section>
       <section class="band">
         <h2>Recent Episodes</h2>
@@ -72,7 +72,7 @@
                   {{ if episode['itunes:season'] }}
                     S{{ episode['itunes:season'] }}E{{ episode['itunes:episode'] }}
                   {{ else }}
-                    #{{ episode }}
+                    #{{ episode['itunes:episode'] }}
                   {{ /if -}} &middot;
                   <time datetime="{{ episode.pubDate }}">{{ episode.pubDate |> readableDate }}</time>
                 </p>
