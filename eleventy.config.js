@@ -8,12 +8,29 @@ export default async function (eleventyConfig) {
   eleventyConfig.addCollection('episode', async () => {
     const allEpisodes = []
     for (const podcast of podcasts) {
-      const feed = await Fetch(podcast.feedUrl, {
-        duration: '1d',
-        type: 'xml'
-      })
+      let feed
+      try {
+        feed = await Fetch(podcast.feedUrl, {
+          duration: '1d',
+          type: 'xml'
+        })
+      } catch (error) {
+        throw new Error(`Failed to fetch feed for ${podcast.name}: ${error.message}`)
+      }
+
       const parser = new XMLParser({ ignoreAttributes: false })
-      const feedEpisodes = parser.parse(feed).rss.channel.item
+      let parsed
+      try {
+        parsed = parser.parse(feed)
+      } catch (error) {
+        throw new Error(`Failed to parse XML for ${podcast.name}: ${error.message}`)
+      }
+
+      const feedEpisodes = parsed.rss?.channel?.item
+      if (!feedEpisodes) {
+        throw new Error(`Feed for ${podcast.name} has no episodes (missing rss.channel.item)`)
+      }
+
       for (const episode of feedEpisodes) {
         episode['itunes:title'] = `${podcast.abbreviation}: ${episode.title}`
         if (episode['itunes:season']) {
