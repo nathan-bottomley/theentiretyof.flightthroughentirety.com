@@ -45,7 +45,24 @@ export default async function (eleventyConfig) {
       })
     )
     const allEpisodes = episodesByPodcast.flat()
-    console.log(`\x1b[33m${allEpisodes.length} episodes`)
+
+    const totalBytes = allEpisodes.reduce((sum, ep) => sum + (parseInt(ep.enclosure?.['@_length']) || 0), 0)
+    const totalGB = (totalBytes / 1e9).toFixed(1)
+
+    const totalSeconds = allEpisodes.reduce((sum, ep) => {
+      const duration = ep['itunes:duration']
+      if (!duration) return sum
+      if (typeof duration === 'number') return sum + duration
+      const parts = String(duration).split(':').map(Number)
+      if (parts.length === 3) return sum + parts[0] * 3600 + parts[1] * 60 + parts[2]
+      if (parts.length === 2) return sum + parts[0] * 60 + parts[1]
+      return sum + (parseInt(duration) || 0)
+    }, 0)
+    const hours = Math.floor(totalSeconds / 3600)
+    const minutes = Math.floor((totalSeconds % 3600) / 60)
+    const seconds = Math.floor(totalSeconds % 60)
+
+    console.log(`\x1b[33m${allEpisodes.length} episodes, ${totalGB} GB, ${hours} hours ${minutes} minutes ${seconds} seconds`)
     allEpisodes.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
     return allEpisodes
   })
