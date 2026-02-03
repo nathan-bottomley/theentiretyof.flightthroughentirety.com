@@ -59,8 +59,12 @@
       </section>
       <section class="band">
         <h2>Recent Episodes</h2>
+        <p><em>The Entirety of Flight Through Entirety</em> comprises {{ podcast.numberOfEpisodes }} episodes,
+          lasting {{ podcast.totalDuration |> readableDuration('long') |> replace(/, (?=[^,]*$)/, ' and ') }},
+          and weighing in at {{ podcast.totalSize |> readableSize }}.</p>
+        <p>Here are the four most recent episodes.</p>
         <ul class="recent-episodes">
-        {{- for episode of collections.episode.slice(0, 4) }}
+        {{- for episode of podcast.episodes.slice(0, 4) }}
             <li>
               <a href="{{ episode.link }}">
                 <img src="{{ episode |> podcast |> at('image') }}" alt="{{ episode |> podcast |> at('name') }} logo" height="100" width="100">

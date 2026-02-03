@@ -186,6 +186,12 @@ body {
   grid-column: 2;
 }
 
+/* DEFAULTS */
+
+p + p {
+  margin-top: 0;
+}
+
 /* COLOURS */
 
 header {
