@@ -17,6 +17,9 @@
     "@11ty/eleventy-img": "^6.0.4",
     "@tsmx/human-readable": "^2.0.4",
     "eleventy-plugin-vento": "^5.3.0",
-    "fast-xml-parser": "^5.3.3"
+    "fast-xml-parser": "^5.3.3",
+    "stylelint": "^17.2.0",
+    "stylelint-config-recess-order": "^7.6.1",
+    "stylelint-config-standard": "^40.0.0"
   }
 }
