@@ -19,7 +19,7 @@ async function fetchEpisodes() {
       let feed
       try {
         feed = await Fetch(podcast.feedUrl, {
-          duration: '1d',
+          duration: process.env.ELEVENTY_RUN_MODE === 'build' ? '0s' : '1d',
           type: 'xml'
         })
       } catch (error) {
