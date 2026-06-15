@@ -309,6 +309,7 @@ header {
 
     figcaption {
       color: var(--white);
+      text-wrap: balance;
 
       a {
         font-weight: bold;
