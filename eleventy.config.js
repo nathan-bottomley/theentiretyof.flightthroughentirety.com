@@ -4,10 +4,6 @@ import readableFilters from './_11ty/readableFilters.js'
 import podcasts from './_data/podcasts.json' with { type: 'json' }
 
 export default async function (eleventyConfig) {
-  eleventyConfig.addFilter('readableDate', (date) => {
-    return new Date(date).toLocaleDateString('en-AU', { weekday: 'long', month: 'long', day: 'numeric' })
-  })
-
   eleventyConfig.addFilter('podcast', (episode) => {
     const firstWord = episode.title.match(/^.+?\b/)[0]
     const podcast = podcasts.find(x => x.abbreviation === firstWord)
