@@ -36,4 +36,5 @@ export default async function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy('css')
   eleventyConfig.addPassthroughCopy('font')
   eleventyConfig.addPassthroughCopy({ icons: '/' })
+  eleventyConfig.addPassthroughCopy({ 'node_modules/fte-podcast-player/podcast-player.js': 'js/podcast-player.js' })
 }

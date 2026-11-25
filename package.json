@@ -17,6 +17,7 @@
     "@11ty/eleventy-img": "^7.0.0",
     "eleventy-plugin-vento": "^7.0.0",
     "fast-xml-parser": "^5.3.3",
+    "fte-podcast-player": "github:nathan-bottomley/fte-podcast-player#semver:^0.2.0",
     "stylelint": "^17.2.0",
     "stylelint-config-recess-order": "^7.6.1",
     "stylelint-config-standard": "^40.0.0"

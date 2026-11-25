@@ -403,8 +403,17 @@ header {
       }
     }
 
-    audio {
-      inline-size: 100%;
+    podcast-player {
+      --player-accent-color: var(--white);
+      --player-text-color: var(--white);
+      --player-background-color: var(--dark-blue);
+      --player-border-color: var(--border-color);
+      --player-font-family: var(--text-font-family);
+      --player-radius: var(--border-radius);
+
+      * {
+        margin-block-start: 0;
+      }
     }
   }
 }

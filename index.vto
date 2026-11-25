@@ -14,6 +14,7 @@
     <meta property="og:title" content="{{ site.title }}">
     <meta property="og:image" content="{{ site.linkLogo }}">
     <meta property="og:description" content="{{ site.description }}">
+    <script type="module" src="/js/podcast-player.js"></script>
     <script defer src="https://tinylytics.app/js/script.js" data-site="rsKHvUr_o8hZ9s8ayCKB"></script>
     <link rel="preload" href="/font/ArquitectaBold.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/font/BespokeSerif-Regular.woff2" as="font" type="font/woff2" crossorigin>
@@ -85,7 +86,9 @@
                   {{ episode.description |> truncate(150) }}
                   <a href="{{ episode.link }}">[More]</a>
                 </p>
-                <audio controls src="{{ episode.enclosure['@_url'] }}"></audio>
+                <podcast-player aria-label="{{ episode.title }}">
+                  <audio controls src="{{ episode.enclosure['@_url'] }}"></audio>
+                </podcast-player>
               </div>
             </li>
         {{- /for }}
