@@ -86,7 +86,7 @@
                   {{ episode.description |> truncate(150) }}
                   <a href="{{ episode.link }}">[More]</a>
                 </p>
-                <podcast-player aria-label="{{ episode.title }}">
+                <podcast-player aria-label="{{ episode.title }}" artist="{{ episode |> podcast |> at('name') }}" artwork="{{ episode |> podcast |> at('image') }}">
                   <audio controls src="{{ episode.enclosure['@_url'] }}"></audio>
                 </podcast-player>
               </div>
