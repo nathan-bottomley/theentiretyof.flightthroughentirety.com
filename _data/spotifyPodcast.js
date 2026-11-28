@@ -3,11 +3,11 @@ import subscriptions from './subscriptions.json' with { type: 'json' }
 
 const link = 'https://theentiretyof.flightthroughentirety.com/spotify-announcement/'
 
-function subscriptionUrl(url) {
+function subscriptionUrl (url) {
   return url.startsWith('/') ? `https://theentiretyof.flightthroughentirety.com${url}` : url
 }
 
-function subscriptionLinksHtml() {
+function subscriptionLinksHtml () {
   return subscriptions
     .map((subscription, index) => {
       const url = subscriptionUrl(subscription.url)
@@ -19,7 +19,7 @@ function subscriptionLinksHtml() {
     .join(', ')
 }
 
-function announcementEpisode(pubDate) {
+function announcementEpisode (pubDate) {
   const description = `<p>At the end of 2026, <em>The Entirety of Flight Through Entirety</em> will be disappearing from Spotify. We'll continue to be available — just everywhere <em>else</em> you get your podcasts, including ${subscriptionLinksHtml()}.</p>
 <p>A short time ago, Spotify pulled roughly eighty episodes of <em>Flight Through Entirety</em> — over the short musical quotation that separates the intro from the body in each <em>FTE</em> episode, a quote usually taken from the soundtrack of whatever <em>Doctor Who</em> story we're discussing. And pisodes of <em>The Entirety of Flight Through Entirety</em> have already begun to disappear from Spotify.</p>
 <p>I think this is fair use: each clip is a brief quotation from the work under analysis, it's part of something essentially transformative, and it doesn't replace the work itself in any way at all. Protecting this sort of thing is what the concept of fair use is for.</p>

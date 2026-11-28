@@ -15,12 +15,12 @@ if (startYear === currentYear) {
 
 let episodesPromise
 
-function getEpisodes() {
+function getEpisodes () {
   if (!episodesPromise) episodesPromise = fetchEpisodes()
   return episodesPromise
 }
 
-async function fetchEpisodes() {
+async function fetchEpisodes () {
   const episodesByPodcast = await Promise.all(
     podcasts.map(async (podcast) => {
       let feed
@@ -65,7 +65,7 @@ async function fetchEpisodes() {
   return episodes
 }
 
-function calculateStats(episodes) {
+function calculateStats (episodes) {
   const totalSize = episodes.reduce((sum, ep) => sum + (parseInt(ep.enclosure?.['@_length']) || 0), 0)
 
   const totalDuration = episodes.reduce((sum, ep) => {
@@ -85,7 +85,7 @@ function calculateStats(episodes) {
   }
 }
 
-export async function createPodcastData({ feedUrl, extraEpisodes = [] }) {
+export async function createPodcastData ({ feedUrl, extraEpisodes = [] }) {
   const episodes = [...extraEpisodes, ...(await getEpisodes())]
     .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
   const { numberOfEpisodes, totalSize, totalDuration } = calculateStats(episodes)
